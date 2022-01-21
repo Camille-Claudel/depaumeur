@@ -4,7 +4,7 @@ import Utils
 
 __ADDRESS_START_STRING = "34:8a:12:c" # You can put it in some config file if you want
 
-def parse_raw_calibrations(json_string: str, mean_function = np.average):
+def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_last_digit: bool = True):
     """ Returns a Tuple with 1st element : a list of all existing addresses and 2nd element : a dictionnary coords (key) gives a vector of signals (value) """
     data = json.loads(json_string)
     addresses = []
@@ -13,7 +13,10 @@ def parse_raw_calibrations(json_string: str, mean_function = np.average):
     len_ass = len(__ADDRESS_START_STRING)
     def _get_addr(full_address: str): # Embedded function i know....
         """ Returns a tuple (is it an address that we care about, the address cut of its prefix) """
-        addr_split = (address[:len_ass], address[len_ass:]) # Cutting the address in 2 -> (prefix, address)
+        addr_split = (
+            address[:len_ass], 
+            address[len_ass:] if keep_last_digit else addresses[len_ass:-1]
+            ) # Cutting the address in 2 -> (prefix, address)
         return (addr_split[0] == __ADDRESS_START_STRING, addr_split[1])
 
     # First pass over elements to get the final array and coordinates
