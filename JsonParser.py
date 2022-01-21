@@ -16,7 +16,7 @@ def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_la
         """ Returns a tuple (is it an address that we care about, the address cut of its prefix) """
         addr_split = (
             address[:len_ass], 
-            address[len_ass:] if keep_last_digit else addresses[len_ass:-1]
+            address[len_ass:] if keep_last_digit else address[len_ass:-1]
             ) # Cutting the address in 2 -> (prefix, address)
         return (addr_split[0] == __WANTED_PREFIX, addr_split[1])
 
@@ -35,7 +35,12 @@ def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_la
             temp_v[addresses.index(addr)] += element["data"][address]
 
         # This is the final vector for the `coords`
-        vector = [mean_function(intensity_values) for intensity_values in temp_v]
+        vector = Utils.create_empty_vector(addresses)
+        for i, intensity_values in enumerate(temp_v):
+            if intensity_values: # List isn't empty
+                vector[i] = mean_function(intensity_values)
+            else:
+                vector[i] = 0
 
         coords_dict[tuple(element["coords"])] = vector
 
@@ -46,7 +51,7 @@ if __name__ == "__main__":
     f = open("raw_calibration_2101.json", "r")
     s = f.read()
     f.close()
-    a, c = parse_raw_calibrations(s)
+    a, c = parse_raw_calibrations(s, keep_last_digit=False)
     print("\n".join(a))
     for k in c:
-        print(k, c[k])
+        print(k, len(c[k]))
