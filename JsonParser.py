@@ -28,15 +28,15 @@ def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_la
                 addresses.append(addr) # Adding the address, as it doesnt exist
     
     for element in data:
-        vector = Utils.create_empty_vector(addresses)
-        for address in element["data"]:
+        temp_v = [[] for a in addresses] # Creates a vector of lists size addresses
+        for address in element["data"]: # Pass over items to get their values and then calculate their averages
             starts_with_prefix, addr = _get_addr(address)
             if not starts_with_prefix: continue
-            Utils.insert_coord_in_vector(
-                vector, 
-                addr, 
-                mean_function(element["data"][address]), # Getting average of the addresses signal points
-                addresses)
+            temp_v[addresses.index(addr)] += element["data"][address]
+
+        # This is the final vector for the `coords`
+        vector = [mean_function(intensity_values) for intensity_values in temp_v]
+
         coords_dict[tuple(element["coords"])] = vector
 
     return (addresses, coords_dict)
