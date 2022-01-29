@@ -50,3 +50,4 @@ if __name__ == '__main__':
             currentContent = json.load(f)
     with open(filename,'w') as f:
         json.dump(currentContent + output,f)
+
