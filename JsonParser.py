@@ -5,11 +5,11 @@ import Utils
 # Prefix necessary to keep the address when parsing
 __WANTED_PREFIX = "34:8a:12:c" # You can put it in some config file if you want
 
-def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_last_digit: bool = True):
-    """ Returns a Tuple with 1st element : a list of all existing addresses and 2nd element : a dictionnary coords (key) gives a vector of signals (value) """
+def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_last_digit: bool = False):
+    """ Returns a Tuple with 1st element : a list of all existing addresses and 2nd element : a list of dictionnaries 'coords'->list 'data'-> measure vector"""
     data = json.loads(json_string)
     addresses = []
-    coords_dict = {}
+    calibration_points = []
     
     len_ass = len(__WANTED_PREFIX)
     def _get_addr(full_address: str): # Embedded function i know....
@@ -41,10 +41,13 @@ def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_la
                 vector[i] = mean_function(intensity_values)
             else:
                 vector[i] = 0
+                
+        calibration_points.append({
+            "coords":element["coords"],
+            "data":vector
+        })
 
-        coords_dict[tuple(element["coords"])] = vector
-
-    return (addresses, coords_dict)
+    return (addresses, calibration_points)
 
 if __name__ == "__main__":
     # Not a real test, it prints values, sees if anything crashes, and you just check manually if things are printed correctly
@@ -54,4 +57,4 @@ if __name__ == "__main__":
     a, c = parse_raw_calibrations(s, keep_last_digit=False)
     print("\n".join(a))
     for k in c:
-        print(k, len(c[k]))
+        print(k["coords"], len(k["data"]))
