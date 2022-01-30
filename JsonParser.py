@@ -5,7 +5,7 @@ import Utils
 # Prefix necessary to keep the address when parsing
 __WANTED_PREFIX = "34:8a:12:c" # You can put it in some config file if you want
 
-def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_last_digit: bool = True):
+def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_last_digit: bool = False):
     """ Returns a Tuple with 1st element : a list of all existing addresses and 2nd element : a dictionnary coords (key) gives a vector of signals (value) """
     data = json.loads(json_string)
     addresses = []
@@ -26,7 +26,7 @@ def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_la
             starts_with_prefix, addr = _get_addr(address)
             if (addr not in addresses) and starts_with_prefix: # If the address is not known, and starts with the right prefix
                 addresses.append(addr) # Adding the address, as it doesnt exist
-    
+
     for element in data:
         temp_v = [[] for a in addresses] # Creates a vector of lists size addresses
         for address in element["data"]: # Pass over items to get their values and then calculate their averages
