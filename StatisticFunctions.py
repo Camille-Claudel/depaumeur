@@ -9,7 +9,10 @@ def advanced_mean(intensities):
     # y: number of times these intensities were measured
     # f such that f(x)=y: distribution function
     # this function finds the best gaussian approximation of f and returns its mean
-    x,y=np.unique(intensities, return_counts=True)
-    initial_guess=(np.mean(intensities),np.std(intensities),max(y)) # starting guess for the optimization
-    params, cov = curve_fit(gaussian, x, y, p0=initiali_guess) # cov: 2d array of the estimated covariance, useless for us
-    return params[0]
+    try:
+        x,y=np.unique(intensities, return_counts=True)
+        initial_guess=(np.mean(intensities),np.std(intensities),max(y)) # starting guess for the optimization
+        params, cov = curve_fit(gaussian, x, y, p0=initial_guess) # cov: 2d array of the estimated covariance, useless for us
+        return params[0]
+    except:
+        return np.average(intensities)
