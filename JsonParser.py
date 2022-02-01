@@ -49,6 +49,11 @@ def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_la
 
     return (addresses, calibration_points)
 
+def parse_raw_measure(AP_list_json_string: str, mean_function = np.average raw_measure, keep_last_digit: bool = False):
+    # raw_measure: dictionnary address->list of measures
+    # TODO: return a measure vector
+    pass
+
 if __name__ == "__main__":
     # Not a real test, it prints values, sees if anything crashes, and you just check manually if things are printed correctly
     f = open("raw_calibration_2101.json", "r")
