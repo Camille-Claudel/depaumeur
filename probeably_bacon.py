@@ -35,11 +35,11 @@ def sniffDataPassive():
     print('finished sniffing')
 
 # acquire data, sending probe requests and listening to responses
-def sniffDataActive():
+def sniffDataActive(n):
     channel = chr(11)
     recipients_mac_adress = 'ff:ff:ff:ff:ff:ff'
     your_mac_adress = 'b8:27:eb:d0:01:c0'
-    ssids = ['Eleves','Profs','Invites','']
+    ssids = ['Eleves','Professeurs','Invites','']
     frames = [
     RadioTap()\
       /Dot11(type=0, subtype=4, addr1=recipients_mac_adress, addr2=your_mac_adress, addr3= recipients_mac_adress)\
@@ -50,7 +50,7 @@ def sniffDataActive():
       /Dot11Elt(ID='DSset', info=channel)
     for i in ssids]
 
-    t = AsyncSniffer(iface='mon0',filter='subtype probe-resp or subtype beacon',count=nbMeasures)
+    t = AsyncSniffer(iface='mon0',filter='subtype probe-resp or subtype beacon',count=n)
     t.start()
     print('starting sniffing')
     pts = 0
@@ -62,9 +62,15 @@ def sniffDataActive():
         time.sleep(0.1)
     t.join()
     print('finished sniffing, formatting')
-    for i in t.results:
-        callback(i)
+    res = {}
+    for pkt in t.results:
+        if pkt.haslayer(Dot11Beacon) or pkt.haslayer(Dot11ProbeResp):
+            if not pkt.addr2 in data:
+                res[pkt.addr2] = []
+            # add a measure of signal strength to data[pkt.addr2] where pkt.addr2 is the sender of the packet
+            res[pkt.addr2].append(dBmTomW(pkt.dBm_AntSignal))
     print('finished formatting')
+    return res
 
 # generate random data, for testing purposes
 def generateDummyData():
@@ -73,7 +79,7 @@ def generateDummyData():
         data[i] = [dBmTomW(-randint(20,100)) for _ in range(randint(3,8))]
 
 if __name__ == '__main__':
-    sniffDataActive()
+    data = sniffDataActive(nbMeasures)
 
     output = [{'coords':[x,y],'data':data}]
 
