@@ -49,11 +49,11 @@ def parse_raw_calibrations(json_string: str, mean_function = np.average, keep_la
 
     return (addresses, calibration_points)
 
-def parse_raw_measure(raw_measure_json: str, AP_list_json_string: str, mean_function = np.average, keep_last_digit: bool = False):
+def parse_raw_measure(raw_measure: dict, AP_list: list, mean_function = np.average, keep_last_digit: bool = False):
     """ TODO: Documentation - Returns a measure vector """
     # raw_measure: dictionnary address->list of measures
-    data = json.loads(raw_measure_json)
-    addresses = json.loads(AP_list_json_string)
+    data = raw_measure
+    addresses = AP_list
     temp_v = [[] for _ in address_list] # Creates a 2D list of size: len(address_list), 0
 
     # first pass over elements to collect address measures
