@@ -53,8 +53,10 @@ def parse_raw_measure(raw_measure: dict, AP_list: list, mean_function = np.avera
     """ TODO: Documentation - Returns a measure vector """
     # raw_measure: dictionnary address->list of measures
     data = raw_measure
+
     addresses = AP_list
-    temp_v = [[] for _ in address_list] # Creates a 2D list of size: len(address_list), 0
+
+    temp_v = [[] for _ in addresses] # Creates a 2D list of size: len(address_list), 0
 
     # first pass over elements to collect address measures
     for address in data:
@@ -71,8 +73,16 @@ def parse_raw_measure(raw_measure: dict, AP_list: list, mean_function = np.avera
             vector[i] = 0
 
     return vector
-    
 if __name__ == "__main__":
+    f = open("raw_calibration_2101.json", "r")
+    s = f.read()
+    f.close()
+    f = open("AP_list.json", "r")
+    addresses = f.read()
+    f.close()
+    print(parse_raw_measure(json.loads(s)[0]['data'],json.loads(addresses)))
+    
+
     # Not a real test, it prints values, sees if anything crashes, and you just check manually if things are printed correctly
     f = open("raw_calibration_2101.json", "r")
     s = f.read()
