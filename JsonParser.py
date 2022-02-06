@@ -9,8 +9,8 @@ def _get_addr(full_address: str, keep_last_digit: bool): # Embedded function i k
     """ Returns a tuple (is it an address that we care about, the address cut of its prefix) """
     len_ass = len(__WANTED_PREFIX)
     addr_split = (
-        address[:len_ass], 
-        address[len_ass:] if keep_last_digit else address[len_ass:-1]
+        full_address[:len_ass], 
+        full_address[len_ass:] if keep_last_digit else full_address[len_ass:-1]
         ) # Cutting the address in 2 -> (prefix, address)
     return (addr_split[0] == __WANTED_PREFIX, addr_split[1])
 
