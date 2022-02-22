@@ -1,9 +1,11 @@
 class Matrix:
     __slots__=(
-        "_items"
+        "_items",
+        "size_tuple"
     )
     def __init__(self, x, y):
         """ Creates a matrix of 0s of size x * y """
+        self.size_tuple = (x, y)
         self._items = [[0] * x for _ in range(y)]
         
     def get(self, x, y):
