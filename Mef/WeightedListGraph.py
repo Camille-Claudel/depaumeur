@@ -23,12 +23,31 @@ class WeightedListGraph(IWeightedGraph):
 
     def set_vertex(self, index: int, links: dict):
         """ Sets the vertex `index` edges using the `links` dict (with key:vertex_index, value:link_weight) """
-        # Preemtively remove every link to that vertex
-        for i, v in self._vertices[index].items:
-            self._vertices[i].pop(index)
+        if not self._directional: # Preemtively remove every link to that vertex
+            for i, v in self._vertices[index].items:
+                self._vertices[i].pop(index)
+
+        # Reset the vertex
         self._vertices[index] = dict(links)
-        for i, v in links.items():
-            self._vertices[i][index] = v
+
+        if not self._directional: # Recreate links if needed
+            for i, v in links.items():
+                self._vertices[i][index] = v
+
+    def get_matrix(self):
+        m = Matrix(len(self._vertices), len(self._vertices))
+        
+        for i, v in enumerate(self._vertices):
+            for k, j in v.items():
+                m.set(i, k, j) # j is the weight
+        
+        return m
 
 if __name__ == "__main__":
-    graph = WeightedGraph(False)
+    graph = WeightedListGraph(False)
+    graph.add_vertex({})
+    graph.add_vertex({0:42})
+    graph.add_vertex({0:69})
+    graph.add_vertex({0:666, 1:420})
+    assert str(graph.get_matrix()) == "[0, 42, 69, 666]\n[0, 0, 0, 420]\n[0, 0, 0, 0]\n[666, 420, 0, 0]"
+    print("Test(s) passed")

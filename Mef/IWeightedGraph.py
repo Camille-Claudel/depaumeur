@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from Matrix import Matrix
 
 class IWeightedGraph(ABC): # Interface for a Weighted Graph
     __slots__ = (
@@ -21,4 +22,9 @@ class IWeightedGraph(ABC): # Interface for a Weighted Graph
     @abstractmethod
     def set_vertex(self, index: int, links: dict):
         """ Sets the vertex `index` edges using the `links` dict (with key:vertex_index, value:link_weight) """
+        pass
+
+    @abstractmethod
+    def get_matrix(self) -> Matrix:
+        """ Returns an adjacency matrix representing the current graph """
         pass
