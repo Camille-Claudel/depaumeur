@@ -31,7 +31,13 @@ class WeightedGraph(IWeightedGraph):
 
     def get_vertex(self, index: int) -> dict:
         """ Returns a `links` dict (with key:vertex_index, value:link_weight) from the index (name) of the vertex you want to get """
-        pass
+        assert index < self._vertices_count, "This vertex doesn't exist"
+        d = {}
+        for y in range(self._vertices_count):
+            v = self._am.get(x, y)
+            if v != 0:
+                d[y] = v
+        return d
 
     def set_vertex(self, index: int, links: dict):
         """ Sets the vertex `index` edges using the `links` dict (with key:vertex_index, value:link_weight) """
