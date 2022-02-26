@@ -34,14 +34,27 @@ class WeightedGraph(IWeightedGraph):
         assert index < self._vertices_count, "This vertex doesn't exist"
         d = {}
         for y in range(self._vertices_count):
-            v = self._am.get(x, y)
+            v = self._am.get(index, y)
             if v != 0:
                 d[y] = v
         return d
 
     def set_vertex(self, index: int, links: dict):
         """ Sets the vertex `index` edges using the `links` dict (with key:vertex_index, value:link_weight) """
-        pass
+        def directional_set(matrix, x, y, value):
+            matrix.set(x, y, value)
+
+        def default_set(matrix, x, y, value):
+            matrix.set(x, y, value)
+            matrix.set(y, x, value)
+
+        set_function = directional_set if self._directional else default_set
+
+        for y in range(self._vertices_count):
+            set_function(self._am, index, y, 0) # Resetting links
+
+        for i, w in links:
+            set_function(self._am, index, i, w)
 
     def get_matrix(self):
         return self._am.copy()
