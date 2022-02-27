@@ -59,5 +59,9 @@ class WeightedGraph(IWeightedGraph):
     def get_matrix(self):
         return self._am.copy()
 
+    def get_vertex_count(self) -> int:
+        """ Returns the amount of vertices in said graph """
+        return self._vertices_count
+
 if __name__ == "__main__":
     graph = WeightedGraph(False)

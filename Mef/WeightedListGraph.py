@@ -43,6 +43,11 @@ class WeightedListGraph(IWeightedGraph):
         
         return m
 
+    
+    def get_vertex_count(self) -> int:
+        """ Returns the amount of vertices in said graph """
+        return len(self._vertices)
+
 if __name__ == "__main__":
     graph = WeightedListGraph(False)
     graph.add_vertex({})

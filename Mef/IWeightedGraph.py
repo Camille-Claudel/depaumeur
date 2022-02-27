@@ -28,3 +28,7 @@ class IWeightedGraph(ABC): # Interface for a Weighted Graph
     def get_matrix(self) -> Matrix:
         """ Returns an adjacency matrix representing the current graph """
         pass
+
+    def get_vertex_count(self) -> int:
+        """ Returns the amount of vertices in said graph """
+        pass
