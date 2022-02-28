@@ -63,5 +63,13 @@ class WeightedGraph(IWeightedGraph):
         """ Returns the amount of vertices in said graph """
         return self._vertices_count
 
+    @staticmethod
+    def from_matrix(matrix: Matrix, directional: bool = False):
+        """ Returns a graph made from a matrix """
+        g = WeightedGraph(directional)
+        g._am = matrix.copy()
+        g._vertices_count = self._am.size_tuple[0]
+        return g
+
 if __name__ == "__main__":
     graph = WeightedGraph(False)
