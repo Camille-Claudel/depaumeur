@@ -29,6 +29,12 @@ class IWeightedGraph(ABC): # Interface for a Weighted Graph
         """ Returns an adjacency matrix representing the current graph """
         pass
 
+    @abstractmethod
     def get_vertex_count(self) -> int:
         """ Returns the amount of vertices in said graph """
+        pass
+
+    @abstractmethod # Also static but i don't know how to make this work with python, there is also no support for multiple constructors
+    def from_matrix(matrix: Matrix, directional: bool = False):
+        """ Returns a graph made from a matrix """
         pass
