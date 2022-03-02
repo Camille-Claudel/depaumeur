@@ -10,7 +10,7 @@ class _SavePattern(enum.Enum):
     MATRIX = 0
     AD_LIST = 1
 
-def weighted_graph_to_json(graph: IWeightedGraph, global_format = False) -> str:
+def weighted_graph_to_json_format(graph: IWeightedGraph, global_format = False) -> list:
     """ Writes graph data as a json string to be saved. Global format determines if the format should be the same across all graph types """
     save = [_SavePattern.UNKNOWN, graph._directional, None] # Graph save pattern, directional, vertices
     if global_format:
@@ -25,9 +25,9 @@ def weighted_graph_to_json(graph: IWeightedGraph, global_format = False) -> str:
         save[2] = graph.get_matrix()
     else:
         raise TypeError("Couldn't write graph data to json (Class type not recognized or supported)")
-    return json.dumps(save)
+    return save
 
-def save_to_weighted_graph(save_data: list, WeightedGraphType = WeightedGraph):
+def weighted_graph_from_saved_data(save_data: list, WeightedGraphType = WeightedGraph):
     save_pattern, directional, data = save_data
 
     if save_pattern == _SavePattern.MATRIX:
