@@ -1,4 +1,3 @@
-import json
 import enum
 
 from Mef.IWeightedGraph import IWeightedGraph
