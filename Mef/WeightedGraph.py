@@ -26,15 +26,15 @@ class WeightedGraph(IWeightedGraph):
         vi = self._vertices_count # Vertex Index
         self._vertices_count += 1
         self._am = self._am.get_resized(self._vertices_count, self._vertices_count)
-        for i, w in links:
-            set_function(self._am, vi, i, w)
+        for i, w in links.items():
+            set_function(self._am, i, vi, w)
 
     def get_vertex(self, index: int) -> dict:
         """ Returns a `links` dict (with key:vertex_index, value:link_weight) from the index (name) of the vertex you want to get """
         assert index < self._vertices_count, "This vertex doesn't exist"
         d = {}
         for y in range(self._vertices_count):
-            v = self._am.get(index, y)
+            v = self._am.get(y, index)
             if v != 0:
                 d[y] = v
         return d
@@ -50,11 +50,11 @@ class WeightedGraph(IWeightedGraph):
 
         set_function = directional_set if self._directional else default_set
 
-        for y in range(self._vertices_count):
-            set_function(self._am, index, y, 0) # Resetting links
+        for x in range(self._vertices_count):
+            set_function(self._am, x, index, 0) # Resetting links
 
-        for i, w in links:
-            set_function(self._am, index, i, w)
+        for i, w in links.items():
+            set_function(self._am, i, index, w)
 
     def get_matrix(self):
         return self._am.copy()
@@ -71,5 +71,15 @@ class WeightedGraph(IWeightedGraph):
         g._vertices_count = self._am.size_tuple[0]
         return g
 
+    def __str__(self):
+        return str(self._am)
+
 if __name__ == "__main__":
-    graph = WeightedGraph(False)
+    graph = WeightedGraph(True)
+    graph.add_vertex({})
+    graph.add_vertex({0:42})
+    graph.add_vertex({1:69})
+    graph.add_vertex({0:666, 1:420})
+    print(graph.get_vertex(0))
+    print(graph.get_vertex(3))
+    print(graph)

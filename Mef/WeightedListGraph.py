@@ -40,7 +40,7 @@ class WeightedListGraph(IWeightedGraph):
         
         for i, v in enumerate(self._vertices):
             for k, j in v.items():
-                m.set(i, k, j) # j is the weight
+                m.set(k, i, j) # j is the weight
         
         return m
     
@@ -56,13 +56,13 @@ class WeightedListGraph(IWeightedGraph):
         g._vertices = [{} for i in range(size)]
         for vi, v in enumerate(g._vertices):
             for li in range(size):
-                w = matrix.get(vi, li)
+                w = matrix.get(li, vi)
                 if w: # weight is not 0
                     v[li] = w
         return g
 
 if __name__ == "__main__":
-    graph = WeightedListGraph(False)
+    graph = WeightedListGraph(True)
     graph.add_vertex({})
     graph.add_vertex({0:42})
     graph.add_vertex({0:69})
