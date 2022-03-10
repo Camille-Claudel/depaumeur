@@ -41,20 +41,21 @@ class WeightedGraph(IWeightedGraph):
 
     def set_vertex(self, index: int, links: dict):
         """ Sets the vertex `index` edges using the `links` dict (with key:vertex_index, value:link_weight) """
-        def directional_set(matrix, x, y, value):
-            matrix.set(x, y, value)
+        def directional_set(matrix, line, x, y, value):
+            line[x] = value
 
-        def default_set(matrix, x, y, value):
-            matrix.set(x, y, value)
+        def default_set(matrix, line, x, y, value):
+            line[x] = value
             matrix.set(y, x, value)
 
         set_function = directional_set if self._directional else default_set
 
-        for x in range(self._vertices_count):
-            set_function(self._am, x, index, 0) # Resetting links
-
+        line = [0] * self._vertices_count
+        
         for i, w in links.items():
-            set_function(self._am, i, index, w)
+            set_function(self._am, line, i, index, w)
+
+        self._am._items[index] = line
 
     def get_matrix(self):
         return self._am.copy()
@@ -75,11 +76,13 @@ class WeightedGraph(IWeightedGraph):
         return str(self._am)
 
 if __name__ == "__main__":
-    graph = WeightedGraph(True)
+    graph = WeightedGraph(False)
     graph.add_vertex({})
     graph.add_vertex({0:42})
     graph.add_vertex({1:69})
     graph.add_vertex({0:666, 1:420})
     print(graph.get_vertex(0))
     print(graph.get_vertex(3))
+    print(graph)
+    graph.set_vertex(1, {0:42, 2:55})
     print(graph)
