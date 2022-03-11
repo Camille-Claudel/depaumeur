@@ -36,12 +36,18 @@ class WeightedListGraph(IWeightedGraph):
                 self._vertices[i][index] = v
 
     def get_matrix(self):
-        m = Matrix(len(self._vertices), len(self._vertices))
+        size = len(self._vertices)
+        m = Matrix(size, size, False)
         
+        array = [[0] * size for _ in range(size)]
+
         for i, v in enumerate(self._vertices):
+            line = array[i]
             for k, j in v.items():
-                m.set(k, i, j) # j is the weight
-        
+                line[k] = j # j is the weight
+
+        m._items = array
+
         return m
     
     def get_vertex_count(self) -> int:
