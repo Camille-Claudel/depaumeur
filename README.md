@@ -5,8 +5,9 @@ Ce projet a pour but la création d’une application de navigation à l’inté
 Les trois objectifs principaux sont:
 * la détermination d’un itinéraire, pour aller le plus rapidement possible d’un endroit du lycée à un autre
 * la localisation de l’utilisateur, pour pouvoir déterminer automatiquement le point de départ du trajet de l’utilisateur
-* la création d’une interface graphique, pour avoir une application similaire à un GPS utilisable sur un téléphone Android
-Dans le futur, peut-être que, si jamais nous avions terminé les objectifs précédents, il existe une probabilité qui pourrait ne pas être nulle pour que nous envisagions éventuellement de considérer les objectifs suivants:
+* la création d’une interface graphique, pour avoir une application similaire à un GPS utilisable sur un téléphone Android  
+
+Dans le futur, peut-être, si jamais nous terminons tous les objectifs précédents, existe-t-il une probabilité qui pourrait ne pas être nulle pour que nous envisagions éventuellement de considérer les objectifs suivants:
 * prendre en compte la fréquentation de chaque couloir en fonction des horaires pour éviter les embouteillages, ce qui serait utile pour des raisons sanitaires et de confort, et parce que ces embouteillages ralentissent la circulation.
 * Connecter l’application à pronote pour donner l’itinéraire vers la salle où l’élève a cours, et donc pouvoir déterminer automatiquement le point d’arrivée du trajet de l’utilisateur.
 
