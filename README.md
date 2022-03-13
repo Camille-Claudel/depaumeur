@@ -16,7 +16,7 @@ Dans le futur, peut-être, si jamais nous terminons tous les objectifs précéde
 Cette partie détaille les mathématiques du calcul de l’itinéraire.  
 Le lycée est représenté par un graphe pondéré. Chaque nœud représente soit une intersection, soit une porte de salle. Si plusieurs portes de salle sont au même endroit, elles pourront être représentées par un seul nœud. Les arêtes représentent une portion de couloir ou un escalier, et leur poids représente la durée nécessaire pour les parcourir.  
 On utilisera l’algorithme de Dijkstra pour déterminer l’itinéraire optimal.
-![graphe lycee](https://user-images.githubusercontent.com/80780126/158068758-1a35db0f-c819-41ee-b5dc-92ee9c517669.png)
+![graphe lycee](https://user-images.githubusercontent.com/80780126/158068913-09be784f-61bd-44cb-bd74-bcbc09505ea9.png)
 
 ## Localisation
 Chaque salle du lycée comporte un répéteur wifi au-dessus de la porte. Un utilisateur peut mesurer l'intensité perçue du signal émis par chaque répéteur. Cette intensité devrait donc dépendre principalement de la position de l'utilisateur. On cherche à utiliser ces mesures d'intensité pour déduire la position de l'utilisateur.  
