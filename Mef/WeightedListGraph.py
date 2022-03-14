@@ -50,6 +50,11 @@ class WeightedListGraph(IWeightedGraph):
 
         return m
     
+    def copy(self):
+        g = WeightedListGraph(self._directional)
+        g.vertices = [v.copy() for v in self._vertices]
+        return g
+
     def get_vertex_count(self) -> int:
         """ Returns the amount of vertices in said graph """
         return len(self._vertices)
@@ -68,7 +73,7 @@ class WeightedListGraph(IWeightedGraph):
         return g
 
 if __name__ == "__main__":
-    graph = WeightedListGraph(True)
+    graph = WeightedListGraph(False)
     graph.add_vertex({})
     graph.add_vertex({0:42})
     graph.add_vertex({0:69})
@@ -86,3 +91,4 @@ if __name__ == "__main__":
     # I tested for directional manually too, and it works
 
     print("Test(s) passed")
+    print(graph)

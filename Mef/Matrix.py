@@ -59,3 +59,9 @@ if __name__ == "__main__":
     print("m2\n" + str(m2))
     print("m3\n" + str(m3)) # I know it works, no need for tests :)
     print("All tests passed")
+
+
+# (A)
+# BC
+# D EFG
+#    H

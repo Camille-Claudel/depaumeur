@@ -38,3 +38,43 @@ class IWeightedGraph(ABC): # Interface for a Weighted Graph
     def from_matrix(matrix: Matrix, directional: bool = False):
         """ Returns a graph made from a matrix """
         pass
+    
+    @abstractmethod
+    def copy(self):
+        """ Returns a copy of the graph """
+        pass
+
+    def __str__(self) -> str:
+        s = ""
+        for i in range(self.get_vertex_count()):
+            sub_s = ""
+            for k in self.get_vertex(i):
+                sub_s += ' ' + str(k)
+            s += '\n' + str(i) + " ->" + sub_s
+        return s
+
+    def get_edges_count(self) -> int:
+        """ Returns the amount of edges """
+        if self._directional:
+            edges = []
+            for i in range(self.get_vertex_count()):
+                for k in self.get_vertex(i):
+                    edge = (i, k)
+                    if edge not in edges:
+                        edges.append(edge)
+            return len(edges)
+        else:
+            raise NotImplementedError("Not implemented")
+
+    def get_degree(self, index: int) -> int:
+        """ Returns the outdegrees of a vertex """
+        return len(self.get_vertex())
+
+    def is_eulerian(self):
+        """ Returns if the graph is eulerian (We suppose the graph is connected) """
+        for i in range(self.get_vertex_count()):
+            if self.get_degree(i) % 2: # Is odd (See math graph wiki)
+                return False
+        return True
+
+    

@@ -72,6 +72,10 @@ class WeightedGraph(IWeightedGraph):
         g._vertices_count = self._am.size_tuple[0]
         return g
 
+    def copy(self):
+        """ Returns a copy of the graph """
+        return WeightedGraph.from_matrix(self._am, self._directional)
+
     def __str__(self):
         return str(self._am)
 
