@@ -86,4 +86,37 @@ class IWeightedGraph(ABC): # Interface for a Weighted Graph
                 return False
         return True
 
-    
+    def _find_cycle(self, start_index: int):
+        """ Returns a list of vertices cycling from start_index vertex back to itself"""
+        assert self.is_eulerian(), "Cannot find a cycle on a non eulerian graph"
+        assert self._directional, "Cannot find a cycle in a non directional graph"
+        cycle = [start_index]
+        current = start_index
+        while not (start_index == current and len(cycle) > 1):
+            links = self.get_vertex(current)
+            current = links.keys()[0] # Taking the first edge we find in the neighbours
+            links.pop(current)
+            self.set_vertex(start_index, links)      
+            cycle.append(current)
+        return cycle
+
+    def find_eulerian_cycle(self):
+        """ Returns a list of vertices cycling over the whole graph """        
+        def _find_non_empty_vertex(g, vertices):
+            """ Returns a vertex that has neighbours from vertices, if none exist, returns none """
+            for i in vertices: # vertices is a list of vertex index (List<int>)
+                if g.get_vertex(i): # If the vertex has any neighbours
+                    return i
+            return None
+
+        if (not self.is_eulerian()) or self._directional:
+            return None
+        graph = self.copy()
+        cycle = graph._find_cycle(0)
+        v_index = _find_non_empty_vertex(graph, cycle)
+        while v_index != None:
+            new_cycle = graph._find_cycle(v_index)
+            i = cycle.index(new_cycle[0])
+            cycle[i:i+1] = new_cycle # Inserting new cycle at the chosen point
+            v_index = _find_non_empty_vertex(graph, cycle)
+        return cycle

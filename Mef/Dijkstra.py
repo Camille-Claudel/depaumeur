@@ -5,13 +5,11 @@ class DijkstraTable:
     def __init__(self, size: int):
         """ Creates a table, and sets the shortest_distance to Inf """
         self.routes = [(-1, -1)] * size
-        
 
     def __setitem__(self, index: int, value: tuple):
         """ Sets an item of the table : tuple(distance, prev_vertex), sets only if the distance is shorter """
         if self.routes[index][0] > value[0] or self.routes[index][0] < 0 :
             self.routes[index] = value
-
 
     def __getitem__(self, index: int) -> tuple:
         """ Returns a tuple(distance, prev_vertex) of the shortest distance, and the vertex to come from """
