@@ -14,6 +14,9 @@ class DijkstraTable:
     def __getitem__(self, index: int) -> tuple:
         """ Returns a tuple(distance, prev_vertex) of the shortest distance, and the vertex to come from """
         return self.routes[index]
+
+    def __str__(self):
+        return str(self.routes)
         
 def get_dijkstra_table(graph, start_vertex):
     """ Returns a table of the shortest paths to all vertices in the graph from start_vertex """
@@ -33,15 +36,22 @@ def get_dijkstra_table(graph, start_vertex):
         closest_distance = None                                                                                                                                                                            
         for v in unvisited:
             distance = table[v][0]
-            if (closest_distance is None) or ((distance < closest_distance) and (distance > 0)):
+            if ((closest_distance is None) or (distance < closest_distance)) and (distance > 0):
                 closest_distance = distance
                 closest_vertex = v
         current = closest_vertex
         total_distance = closest_distance
-    return table 
+    table[start_vertex] = (0, start_vertex) # Setting the start vertex to a distance of 0, and we can get to it from itself
+    return table
 
-
-
-
-
-
+if __name__ == "__main__":
+    import WeightedListGraph as wg
+    graph = wg.WeightedListGraph(False)
+    graph.add_vertex({})
+    graph.add_vertex({0:2})
+    graph.add_vertex({1:5})
+    graph.add_vertex({2:42})
+    graph.add_vertex({0:4,2:14,3:7})
+    print(graph)
+    table = get_dijkstra_table(graph, 3)
+    print(table)
