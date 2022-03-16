@@ -44,6 +44,15 @@ class IWeightedGraph(ABC): # Interface for a Weighted Graph
         """ Returns a copy of the graph """
         pass
 
+    def __getitem__(self, index):
+        return self.get_vertex(index)
+
+    def __setitem__(self, index, value):
+        self.set_vertex(index, value)
+
+    def __len__(self):
+        return self.get_vertex_count()
+
     def __str__(self) -> str:
         s = ""
         for i in range(self.get_vertex_count()):
