@@ -25,7 +25,7 @@ class WeightedListGraph(IWeightedGraph):
     def set_vertex(self, index: int, links: dict):
         """ Sets the vertex `index` edges using the `links` dict (with key:vertex_index, value:link_weight) """
         if not self._directional: # Preemtively remove every link to that vertex
-            for i, v in self._vertices[index].items:
+            for i, v in self._vertices[index].items():
                 self._vertices[i].pop(index)
 
         # Reset the vertex
