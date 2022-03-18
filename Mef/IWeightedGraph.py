@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from Matrix import Matrix
+from Mef.Matrix import Matrix
 
 class IWeightedGraph(ABC): # Interface for a Weighted Graph
     __slots__ = (
