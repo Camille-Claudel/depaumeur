@@ -31,7 +31,16 @@ Pour localiser un utilisateur, le programme doit comparer la mesure de l’utili
 [algorithme de comparaison.pdf](https://github.com/Camille-Claudel/depaumeur/files/8238162/mathbananas.3.pdf)
 
 ## Étalonnage
-Pour l’étalonnage, il est nécessaire d’avoir des mesures précises de l’intensité du signal. Pour cela, on effectue la mesure de nombreuses fois dont on conserve la moyenne. Cependant, les téléphones ne permettent pas d'effectuer ces mesures suffisamment rapidement, nous utilisons donc un dispositif alienoïde créé à base d’un raspberry pi sous un OS de “stickyfingers”, de pièces imprimées en 3D à l’arrache, d’un écran pas cher sur Amazon, de vis mal fixées parce qu’on avait pas de tournevis, et d’une batterie offerte par le comité de tennis des bouches du Rhône en 2017.
+Pour l’étalonnage, il est nécessaire d’avoir des mesures précises de l’intensité du signal. Pour cela, on effectue la mesure de nombreuses fois dont on conserve la moyenne. Cependant, les téléphones ne permettent pas d'effectuer ces mesures suffisamment rapidement, nous utilisons donc un dispositif alienoïde créé à base d’un raspberry pi sous un OS de “stickyfingers”, de pièces imprimées en 3D à l’arrache, d’un écran pas cher sur Amazon, de vis mal fixées parce qu’on avait pas de tournevis, et d’une batterie offerte par le comité de tennis des bouches du Rhône en 2017.  
+![1647648229735](https://user-images.githubusercontent.com/80780126/159098418-8dd5cde8-129c-4ed1-b2fe-d787643f78f9.jpg)
+![image](https://user-images.githubusercontent.com/80780126/159098384-15c4b5d5-4cd2-4057-a047-48e984c2e55f.png)
 
 ## Instabilité du signal
 Malheureusement, le signal émis par les répéteurs du lycée est très peu constant. Nous n’avons donc pas encore réussi à localiser le dispositif dans le lycée avec une précision satisfaisante. La dernière partie du document détaillant l’algorithme de localisation (concernant l’interpolation) est donc complètement inutilisable, et la localisation au point d’étalonnage le plus proche ne permet pas de se localiser plus précisément qu’à 15m près.
+
+# Résultat final
+Le projet est encore en cours, cette partie est donc amenée à être complétée dans le futur. Cependant, voici une vidéo des premiers mouvements de Fred, le 19/03/2022 vers 00:35 :  
+
+
+https://user-images.githubusercontent.com/80780126/159098490-f06c7ad0-8435-4daa-b1b5-614b8f2cceff.mp4
+
