@@ -35,6 +35,14 @@ class WeightedListGraph(IWeightedGraph):
             for i, v in links.items():
                 self._vertices[i][index] = v
 
+    def modify_edges(self, index: int, links: dict):
+        """ Adds or modifies existing edges, doesn't delete old ones """
+        self._vertices[index].update(links)
+
+        if not self._directional: # Add links/modify them if non directional
+            for i, v in links.items():
+                self._vertices[i][index] = v
+
     def get_matrix(self):
         size = len(self._vertices)
         m = Matrix(size, size, False)

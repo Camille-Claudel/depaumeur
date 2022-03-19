@@ -43,7 +43,7 @@ def weighted_graph_from_saved_data(save_data: list, WeightedGraphType = Weighted
             new_dict = {}
             for edge, weight in vertex.items(): # Copying dict because keys are strings when saved to json
                 new_dict[int(edge)] = weight
-            graph.set_vertex(i, new_dict)
+            graph.modify_edges(i, new_dict)
         return graph
     else:
         raise TypeError("Coudln't parse over save_data (Not a readable graph format)")
