@@ -1,5 +1,5 @@
-from IWeightedGraph import IWeightedGraph
-from Matrix import Matrix
+from Mef.IWeightedGraph import IWeightedGraph
+from Mef.Matrix import Matrix
 
 class WeightedListGraph(IWeightedGraph):
     __slots__ = (
@@ -32,6 +32,14 @@ class WeightedListGraph(IWeightedGraph):
         self._vertices[index] = dict(links)
 
         if not self._directional: # Recreate links if needed
+            for i, v in links.items():
+                self._vertices[i][index] = v
+
+    def modify_edges(self, index: int, links: dict):
+        """ Adds or modifies existing edges, doesn't delete old ones """
+        self._vertices[index].update(links)
+
+        if not self._directional: # Add links/modify them if non directional
             for i, v in links.items():
                 self._vertices[i][index] = v
 

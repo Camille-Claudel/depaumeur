@@ -1,5 +1,5 @@
-from IWeightedGraph import IWeightedGraph
-from Matrix import Matrix
+from Mef.IWeightedGraph import IWeightedGraph
+from Mef.Matrix import Matrix
 
 class WeightedGraph(IWeightedGraph):
     __slots__ = (
@@ -69,7 +69,7 @@ class WeightedGraph(IWeightedGraph):
         """ Returns a graph made from a matrix """
         g = WeightedGraph(directional)
         g._am = matrix.copy()
-        g._vertices_count = self._am.size_tuple[0]
+        g._vertices_count = g._am.size_tuple[0]
         return g
 
     def copy(self):
