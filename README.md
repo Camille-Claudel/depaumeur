@@ -37,10 +37,3 @@ Pour l’étalonnage, il est nécessaire d’avoir des mesures précises de l’
 
 ## Instabilité du signal
 Malheureusement, le signal émis par les répéteurs du lycée est très peu constant. Nous n’avons donc pas encore réussi à localiser le dispositif dans le lycée avec une précision satisfaisante. La dernière partie du document détaillant l’algorithme de localisation (concernant l’interpolation) est donc complètement inutilisable, et la localisation au point d’étalonnage le plus proche ne permet pas de se localiser plus précisément qu’à 15m près.
-
-# Résultat final
-Le projet est encore en cours, cette partie est donc amenée à être complétée dans le futur. Cependant, voici une vidéo des premiers mouvements de Fred, le 19/03/2022 vers 00:35 :  
-
-
-https://user-images.githubusercontent.com/80780126/159098490-f06c7ad0-8435-4daa-b1b5-614b8f2cceff.mp4
-
