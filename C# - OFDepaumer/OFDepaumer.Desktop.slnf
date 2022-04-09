@@ -1,0 +1,11 @@
+﻿{
+  "solution": {
+    "path": "OFDepaumer.sln",
+    "projects": [
+      "OFDepaumer.Desktop\\OFDepaumer.Desktop.csproj",
+      "OFDepaumer.Game\\OFDepaumer.Game.csproj",
+      "OFDepaumer.Game.Tests\\OFDepaumer.Game.Tests.csproj",
+      "OFDepaumer.Resources\\OFDepaumer.Resources.csproj"
+    ]
+  }
+}
