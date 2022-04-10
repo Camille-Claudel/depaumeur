@@ -10,7 +10,7 @@ namespace OFDepaumer.Game.WifiPositioning
     {
 
         public ICalibrationPoint[] CalibrationPoints { get; }
-        List<string> WifiPointMacAddresses { get; }
+        string[] WifiPointMacAddresses { get; }
         
     }
 }
