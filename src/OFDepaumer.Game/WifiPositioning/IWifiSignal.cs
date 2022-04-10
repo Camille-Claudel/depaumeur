@@ -9,7 +9,7 @@ namespace OFDepaumer.Game.WifiPositioning
         /// <summary>
         /// The mac address defining the wifi point
         /// </summary>
-        public string MacAdress { get; }
+        public string MacAddress { get; }
         /// <summary>
         /// The signal strength
         /// </summary>

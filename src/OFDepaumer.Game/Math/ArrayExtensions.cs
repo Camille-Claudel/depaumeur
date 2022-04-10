@@ -9,8 +9,13 @@ namespace OFDepaumer.Game.Math
         public static double SquaredEuclidianDistance(this Array array, Array other)
         {
             double value = 0d;
+            double diff;
 
-            // La tu fais tes calculs sur la distance
+            for (int i = 0; i < array.Length; i++)
+            {
+                diff = (double)array.GetValue(i) - (double)other.GetValue(i);
+                value += diff * diff;
+            }
 
             return value;
         }
