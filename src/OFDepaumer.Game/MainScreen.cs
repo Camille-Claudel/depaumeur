@@ -24,14 +24,10 @@ namespace OFDepaumer.Game
                 new SpriteText
                 {
                     Y = 20,
-                    Text = "Main Screen",
+                    Text = "Click to run scanning events",
                     Anchor = Anchor.TopCentre,
                     Origin = Anchor.TopCentre,
                     Font = FontUsage.Default.With(size: 40)
-                },
-                new SpinningBox
-                {
-                    Anchor = Anchor.Centre,
                 }
             };
         }
