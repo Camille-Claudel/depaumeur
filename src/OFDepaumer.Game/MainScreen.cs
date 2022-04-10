@@ -35,5 +35,11 @@ namespace OFDepaumer.Game
                 }
             };
         }
+
+        public void ChangeText(string newText)
+        {
+            (InternalChildren[1] as SpriteText).Text = newText;
+        }
+
     }
 }
