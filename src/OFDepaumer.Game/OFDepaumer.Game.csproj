@@ -8,4 +8,9 @@
   <ItemGroup>
     <PackageReference Include="ppy.osu.Framework" Version="2021.1029.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.NET\Framework64\v4.0.30319\Microsoft.CSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

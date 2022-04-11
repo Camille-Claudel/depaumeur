@@ -18,8 +18,8 @@ namespace OFDepaumer.Game
             mainScreen = screen;
 
             //  --  Load settings  --
-            // ICalibrationSettings settings = CalibrationParser.LoadSettings("settingsFile.ext");
-            // locator = new Locator(settings);
+            ICalibrationSettings settings = CalibrationParser.LoadSettings("settingsFile.ext");
+            locator = new Locator(settings);
         }
 
         public void Start()
