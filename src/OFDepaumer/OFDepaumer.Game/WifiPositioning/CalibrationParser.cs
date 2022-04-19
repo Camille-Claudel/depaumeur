@@ -9,7 +9,7 @@ namespace OFDepaumer.Game.WifiPositioning
     public static class CalibrationParser
     {
 
-        public static ICalibrationSettings LoadSettings(string fileName)
+        /*public static ICalibrationSettings LoadSettings(string fileName)
         {
             string jsonText = System.IO.File.ReadAllText(fileName);
             dynamic jsonData = JObject.Parse(jsonText); // listen technically i should create a class for this, but flemme
@@ -26,7 +26,7 @@ namespace OFDepaumer.Game.WifiPositioning
             }
 
             return new CalibrationSettings(calibrationPoints, macAddresses);
-        }
+        }*/
 
     }
 }

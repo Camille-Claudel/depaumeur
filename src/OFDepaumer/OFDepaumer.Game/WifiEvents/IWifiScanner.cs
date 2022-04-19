@@ -7,7 +7,9 @@ namespace OFDepaumer.Game.WifiEvents
 {
     public interface IWifiScanner
     {
+
+        public IWifiSignal[] LastWifiScanSignals { get; }
+
         public bool TryPerformWifiScan(out IWifiSignal[] scannedSignals);
-        bool TryPerformWifiScan(object p, object signals);
     }
 }
