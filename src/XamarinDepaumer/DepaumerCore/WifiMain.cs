@@ -10,9 +10,7 @@ namespace Depaumer
     public class WifiMain
     {
 
-        private readonly ILocator locator;
-
-        public event EventHandler<EventArgs> PositionUpdated;
+        public readonly ILocator locator;
 
         public WifiMain()
         {
