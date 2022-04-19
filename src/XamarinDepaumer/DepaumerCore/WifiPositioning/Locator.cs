@@ -19,7 +19,7 @@ public class Locator : ILocator
     public Locator(ICalibrationSettings settings)
     {
         Settings = settings;
-        LastUpdateTime = new TimeOnly(DateTime.Now.Ticks);
+        LastUpdateTime = new TimeOnly(DateTime.Now.TimeOfDay.Ticks);
     }
 
     private double[] makeVector(IWifiSignal[] signals)
@@ -63,7 +63,7 @@ public class Locator : ILocator
             LastUpdateTime);
         
         CurrentPosition = pos;                              // Updating instance variables
-        LastUpdateTime = new TimeOnly(DateTime.Now.Ticks);
+        LastUpdateTime = new TimeOnly(DateTime.Now.TimeOfDay.Ticks);
 
         PositionUpdated?.Invoke(this, args);
 
