@@ -6,14 +6,14 @@ namespace OFDepaumer.Game.Math
 {
     public static class ArrayExtensions
     {
-        public static double SquaredEuclidianDistance(this Array array, Array other)
+        public static double SquaredEuclidianDistance(this double[] array, double[] other)
         {
             double value = 0d;
             double diff;
 
             for (int i = 0; i < array.Length; i++)
             {
-                diff = (double)array.GetValue(i) - (double)other.GetValue(i);
+                diff = array[i] - other[i];
                 value += diff * diff;
             }
 
