@@ -13,9 +13,9 @@ namespace Depaumer.WifiPositioning
 
         public Vector2 Current { get; }
 
-        public TimeOnly LastUpdateTime { get; }
+        public DateTime LastUpdateTime { get; }
 
-        public PositionUpdateArgs(Vector2? previous, Vector2 current, TimeOnly lastUpdateTime)
+        public PositionUpdateArgs(Vector2? previous, Vector2 current, DateTime lastUpdateTime)
         {
             Previous = previous;
             Current = current;

@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Depaumer.WifiPositioning;
-
-internal class WifiSignal : IWifiSignal
+namespace Depaumer.WifiPositioning
 {
-    public WifiSignal(string macAddress, double rss, string ssid)
+    internal class WifiSignal : IWifiSignal
     {
-        MacAddress = macAddress;
-        RSS = rss;
-        SSID = ssid;
+        public WifiSignal(string macAddress, double rss, string ssid)
+        {
+            MacAddress = macAddress;
+            RSS = rss;
+            SSID = ssid;
+        }
+        public string MacAddress { get; }
+        public double RSS { get; }
+        public string SSID { get; }
     }
-    public string MacAddress { get; }
-    public double RSS { get; }
-    public string SSID { get; }
+
 }

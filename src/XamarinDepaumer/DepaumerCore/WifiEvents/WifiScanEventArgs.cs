@@ -4,14 +4,16 @@ using System.Text;
 using Depaumer.WifiPositioning;
 
 
-namespace Depaumer.WifiEvents;
-
-public class WifiScanEventArgs : EventArgs
+namespace Depaumer.WifiEvents
 {
-    public IWifiSignal[] RecievedSignals;
 
-    public WifiScanEventArgs(IWifiSignal[] recievedSignals)
+    public class WifiScanEventArgs : EventArgs
     {
-        RecievedSignals = recievedSignals;
+        public IWifiSignal[] RecievedSignals;
+
+        public WifiScanEventArgs(IWifiSignal[] recievedSignals)
+        {
+            RecievedSignals = recievedSignals;
+        }
     }
 }

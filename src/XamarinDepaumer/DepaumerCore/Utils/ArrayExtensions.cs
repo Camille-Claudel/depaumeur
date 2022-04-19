@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Depaumer.Utils;
-
-public static class ArrayExtensions
+namespace Depaumer.Utils
 {
-    public static double SquaredEuclidianDistance(this double[] array, double[] other)
+    public static class ArrayExtensions
     {
-        //NB : If we have performance problems (Because this method is used a lot), we can use registers in an unsafe context, with the help of pointers
-
-        double value = 0d;
-        double diff;
-
-        for (int i = 0; i < array.Length; i++)
+        public static double SquaredEuclidianDistance(this double[] array, double[] other)
         {
-            diff = array[i] - other[i];
-            value += diff * diff;
-        }
+            //NB : If we have performance problems (Because this method is used a lot), we can use registers in an unsafe context, with the help of pointers
 
-        return value;
+            double value = 0d;
+            double diff;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                diff = array[i] - other[i];
+                value += diff * diff;
+            }
+
+            return value;
+        }
     }
 }

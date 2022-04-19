@@ -12,10 +12,9 @@ namespace Depaumer
 
         public readonly ILocator locator;
 
-        public WifiMain()
+        public WifiMain(ICalibrationSettings settings)
         {
             //  --  Load settings  --
-            ICalibrationSettings settings = CalibrationParser.LoadSettings("settingsFile.ext");
             locator = new Locator(settings);
         }
 

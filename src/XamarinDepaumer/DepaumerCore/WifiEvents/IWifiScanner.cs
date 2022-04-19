@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using Depaumer.WifiPositioning;
 
-namespace Depaumer.WifiEvents;
-
-public interface IWifiScanner
+namespace Depaumer.WifiEvents
 {
 
-    public IWifiSignal[] LastWifiScanSignals { get; }
+    public interface IWifiScanner
+    {
 
-    public bool TryPerformWifiScan(out IWifiSignal[] scannedSignals);
+        public IWifiSignal[] LastWifiScanSignals { get; }
+
+        public bool TryPerformWifiScan(out IWifiSignal[] scannedSignals);
+    }
 }

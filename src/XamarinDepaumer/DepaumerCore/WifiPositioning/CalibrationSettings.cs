@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Depaumer.WifiPositioning;
-
-internal class CalibrationSettings : ICalibrationSettings
+namespace Depaumer.WifiPositioning
 {
-    public CalibrationSettings(ICalibrationPoint[] calibrationPoints, string[] wifiPointMacAddresses)
+    internal class CalibrationSettings : ICalibrationSettings
     {
-        CalibrationPoints = calibrationPoints;
-        WifiPointMacAddresses = wifiPointMacAddresses;
+        public CalibrationSettings(ICalibrationPoint[] calibrationPoints, string[] wifiPointMacAddresses)
+        {
+            CalibrationPoints = calibrationPoints;
+            WifiPointMacAddresses = wifiPointMacAddresses;
+        }
+        public ICalibrationPoint[] CalibrationPoints { get; }
+        public string[] WifiPointMacAddresses { get; }
     }
-    public ICalibrationPoint[] CalibrationPoints { get; }
-    public string[] WifiPointMacAddresses { get; }
 }
