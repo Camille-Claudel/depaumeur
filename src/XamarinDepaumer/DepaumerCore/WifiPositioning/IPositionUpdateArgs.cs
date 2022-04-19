@@ -13,9 +13,9 @@ namespace Depaumer.WifiPositioning;
 public interface IPositionUpdateArgs
 {
     /// <summary>
-    /// Returns the last position calculated
+    /// Returns the last position calculated, can be null if this is the first position update
     /// </summary>
-    public Vector2 Previous { get; }
+    public Vector2? Previous { get; }
     /// <summary>
     /// Returns the new position
     /// </summary>

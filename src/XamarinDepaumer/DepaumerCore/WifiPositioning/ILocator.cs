@@ -10,7 +10,8 @@ public interface ILocator
     public ICalibrationSettings Settings { get; }
 
     public event EventHandler<IPositionUpdateArgs> PositionUpdated;
-    public Vector2 CurrentPosition { get; protected set; }
+    public Vector2? CurrentPosition { get; }
+    public TimeOnly LastUpdateTime { get; }
 
     /// <summary>
     /// Returns the coordinates of the person according to the calibrations and the percieved wifi signals
