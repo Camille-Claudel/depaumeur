@@ -2,6 +2,6 @@ __pycache__/
 *.pyc
 **/obj
 **/bin
-src/.idea/
-src/.vs
-src/.vscode
+src/**/.idea/
+src/**/.vs
+src/**/.vscode

@@ -15,7 +15,7 @@ namespace OFDepaumer.Game
 
         protected override Container<Drawable> Content { get; }
 
-        protected OFDepaumerGameBase()
+        public OFDepaumerGameBase()
         {
             // Ensure game and tests scale with window size and screen DPI.
             base.Content.Add(Content = new DrawSizePreservingFillContainer

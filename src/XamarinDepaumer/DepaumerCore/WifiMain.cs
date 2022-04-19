@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
-using OFDepaumer.Game.WifiEvents;
-using OFDepaumer.Game.WifiPositioning;
-using osuTK;
+using Depaumer.WifiEvents;
+using Depaumer.WifiPositioning;
 
-namespace OFDepaumer.Game
+namespace Depaumer
 {
     public class WifiMain
     {
 
-        private readonly ILocator locator;
-        private readonly MainScreen mainScreen;
+        public readonly ILocator locator;
 
-        public WifiMain(MainScreen screen)
+        public WifiMain()
         {
-            mainScreen = screen;
-
             //  --  Load settings  --
             ICalibrationSettings settings = CalibrationParser.LoadSettings("settingsFile.ext");
             locator = new Locator(settings);
@@ -32,9 +29,6 @@ namespace OFDepaumer.Game
         {
             // Example scanning code
             Vector2 position = locator.Locate(e.RecievedSignals);
-
-            // Showing coordinates on main screen text
-            mainScreen.ChangeText($"x: {position.X}; y: {position.Y}");
         }
 
     }
