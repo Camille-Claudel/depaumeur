@@ -14,7 +14,7 @@ namespace Depaumer.WifiPositioning
         /// <summary>
         /// The signal strength
         /// </summary>
-        public double RSS { get; }
+        public double RSSI { get; }
         /// <summary>
         /// The wifi ID
         /// </summary>

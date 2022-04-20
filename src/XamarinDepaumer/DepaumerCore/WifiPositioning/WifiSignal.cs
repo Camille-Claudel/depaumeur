@@ -9,11 +9,11 @@ namespace Depaumer.WifiPositioning
         public WifiSignal(string macAddress, double rss, string ssid)
         {
             MacAddress = macAddress;
-            RSS = rss;
+            RSSI = rss;
             SSID = ssid;
         }
         public string MacAddress { get; }
-        public double RSS { get; }
+        public double RSSI { get; }
         public string SSID { get; }
     }
 
