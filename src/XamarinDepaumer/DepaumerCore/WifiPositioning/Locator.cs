@@ -30,7 +30,7 @@ namespace Depaumer.WifiPositioning
             {
                 int index = Array.IndexOf(Settings.WifiPointMacAddresses, signal.MacAddress);
                 if (index != -1)
-                    vector[index] = signal.RSS;
+                    vector[index] = signal.RSSI;
             }
 
             return vector;
