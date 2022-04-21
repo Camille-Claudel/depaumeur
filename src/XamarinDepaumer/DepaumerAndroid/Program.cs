@@ -32,6 +32,7 @@ namespace Depaumer
         {
             //wifi.Start();
             _ = WifiScan.RunScanTimer(5000);
+            WifiScan.OnWifiScanned += OnScannedWifi;
         }
 
         public void OnScannedWifi(object sender, WifiScanEventArgs args)
@@ -41,13 +42,11 @@ namespace Depaumer
             {
                 scannedData.Add($"{signal.SSID} : {signal.RSSI}");
             }
-
-            ListView view = activity.FindViewById<ListView>(Resource.Id.scanned_wifis);
-            var adapter = new ArrayAdapter<string>(Android.Resource.Layout.ActivityListItem, numbersListString);
+            
+            var adapter = new ArrayAdapter<string>(activity, Android.Resource.Layout.SimpleListItem1, scannedData.ToArray());
 
             adapter.AddAll(Android.Resource.Layout.ActivityListItem);
-            numbersListView.Adapter = adapter;
-
+            activity.ui.scannedWifis.Adapter = adapter;
 
         }
 

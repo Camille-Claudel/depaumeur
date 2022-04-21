@@ -10,14 +10,19 @@ using Google.Android.Material.Snackbar;
 using Android.Net.Wifi;
 using Java;
 using Android.Content;
+using Android.Widget;
 
 namespace Depaumer
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+
+        public UIManager ui = new UIManager();
+
         internal static WifiManager wifiManager;
         internal static Context context;
+        internal Program program;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,7 +30,17 @@ namespace Depaumer
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
+            ui.scannedWifis = FindViewById<ListView>(Resource.Id.scanned_wifis);
+
             wifiManager = Application.ApplicationContext.GetSystemService(Context.WifiService) as WifiManager;
+            program = new Program(this);
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            program.Run();
+
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
