@@ -18,10 +18,14 @@ namespace Depaumer
             locator = new Locator(settings);
         }
 
-        public void Start()
+        /// <summary>
+        /// Starts wifi scanning
+        /// </summary>
+        /// <param name="msScanAttempRate">Defines the time intervals in ms the application will attempt to scan the wifi</param>
+        public void Start(int msScanAttempRate)
         {
             WifiScan.OnWifiScanned += OnScan;   // Registering scan
-            _ = WifiScan.RunScanTimer(500);     // Running timer asynchronously
+            _ = WifiScan.RunScanTimer(msScanAttempRate);     // Running timer asynchronously
         }
 
         private void OnScan(object sender, WifiScanEventArgs e)
