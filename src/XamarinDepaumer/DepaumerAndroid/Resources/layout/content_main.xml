@@ -15,13 +15,6 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:text="@string/location"
-        android:id="@+id/textView1" />
-    <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/textView1"
-        android:id="@+id/scanned_wifis" />
+        android:id="@+id/textViewLocation" />
 
 </RelativeLayout>
