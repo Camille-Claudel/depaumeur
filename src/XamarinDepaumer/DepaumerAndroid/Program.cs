@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Depaumer.WifiEvents;
+using Android.Content.Res;
+using System.IO;
 
 namespace Depaumer
 {
@@ -21,33 +23,32 @@ namespace Depaumer
        
         public Program(MainActivity activity)
         {
+            this.activity = activity;
+
+            // Registering the android scanner
             WifiScan.Scanner = new AndroidWifiScanner();
 
-            //ICalibrationSettings settings = CalibrationParser.LoadSettings("somefile.ext");
-            //wifi = new WifiMain(settings);
-            this.activity = activity;
+            // Loading the json settings from Android Assets (App package)
+            string settingsJSON;
+            AssetManager assets = activity.Assets;
+            using (StreamReader sr = new StreamReader(assets.Open("settings.json")))
+                settingsJSON = sr.ReadToEnd();
+
+            // Parsing the settings and loading them into a new Wifi instance (instance that will scan wifi and search for current location)
+            ICalibrationSettings settings = CalibrationParser.LoadSettings(settingsJSON);
+            wifi = new WifiMain(settings);
         }
 
         public void Run()
         {
-            //wifi.Start();
-            _ = WifiScan.RunScanTimer(5000);
-            WifiScan.OnWifiScanned += OnScannedWifi;
+            wifi.Start(5000);
         }
 
-        public void OnScannedWifi(object sender, WifiScanEventArgs args)
+        private void OnLocationUpdated(object sender, PositionUpdateArgs args)
         {
-            List<string> scannedData = new List<string>(args.RecievedSignals.Length);
-            foreach(IWifiSignal signal in args.RecievedSignals)
-            {
-                scannedData.Add($"{signal.SSID} : {signal.RSSI}");
-            }
-            
-            var adapter = new ArrayAdapter<string>(activity, Android.Resource.Layout.SimpleListItem1, scannedData.ToArray());
+            string text = $"Location : {args.Current}, UpdateTime : {wifi.locator.LastUpdateTime}\nPreviously - Location : {args.Previous}, UpdateTime : {args.LastUpdateTime}";
 
-            adapter.AddAll(Android.Resource.Layout.ActivityListItem);
-            activity.ui.scannedWifis.Adapter = adapter;
-
+            activity.ui.wifiTextView.Text = text; // When the location is updated, we load a new string representing the new location
         }
 
     }
