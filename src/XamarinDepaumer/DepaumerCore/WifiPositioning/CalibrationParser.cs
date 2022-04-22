@@ -10,10 +10,9 @@ namespace Depaumer.WifiPositioning
     public static class CalibrationParser
     {
 
-        public static ICalibrationSettings LoadSettings(string fileName)
+        public static ICalibrationSettings LoadSettings(string jsonSettingsString)
         {
-            string jsonText = System.IO.File.ReadAllText(fileName);
-            dynamic jsonData = JObject.Parse(jsonText); // listen technically i should create a class for this, but flemme
+            dynamic jsonData = JObject.Parse(jsonSettingsString); // listen technically i should create a class for this, but flemme
 
             string[] macAddresses = jsonData.macAddresses.ToObject<string[]>();
             CalibrationPoint[] calibrationPoints = new CalibrationPoint[jsonData.points.Count];
