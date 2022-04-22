@@ -14,7 +14,7 @@ namespace Depaumer.WifiPositioning
 
         public DateTime LastUpdateTime { get; private set; }
 
-        public event EventHandler<IPositionUpdateArgs>? PositionUpdated;
+        public event EventHandler<PositionUpdateArgs> PositionUpdated;
 
         public Locator(ICalibrationSettings settings)
         {
@@ -57,7 +57,7 @@ namespace Depaumer.WifiPositioning
             // Firing Event and return of new position
             Vector2 pos = Settings.CalibrationPoints[argmin].Position; // Buffering position
 
-            IPositionUpdateArgs args = new PositionUpdateArgs(
+            PositionUpdateArgs args = new PositionUpdateArgs(
                 CurrentPosition,    // Previous position
                 pos,                // The new calculated distance
                 LastUpdateTime);

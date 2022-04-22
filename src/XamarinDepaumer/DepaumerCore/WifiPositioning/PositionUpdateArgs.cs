@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Depaumer.WifiPositioning
 {
-    public class PositionUpdateArgs : IPositionUpdateArgs
+    public class PositionUpdateArgs : EventArgs
     {
         public Vector2? Previous { get; }
 

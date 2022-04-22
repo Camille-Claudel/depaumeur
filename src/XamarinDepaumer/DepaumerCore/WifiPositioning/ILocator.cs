@@ -9,7 +9,7 @@ namespace Depaumer.WifiPositioning
     {
         public ICalibrationSettings Settings { get; }
 
-        public event EventHandler<IPositionUpdateArgs> PositionUpdated;
+        public event EventHandler<PositionUpdateArgs> PositionUpdated;
         public Vector2? CurrentPosition { get; }
         public DateTime LastUpdateTime { get; }
 
