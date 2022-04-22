@@ -13,7 +13,6 @@ namespace Depaumer
 {
     public class UIManager
     {
-        public ListView scannedWifis;
-
+        public TextView wifiTextView;
     }
 }

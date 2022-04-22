@@ -11,6 +11,7 @@ using Android.Net.Wifi;
 using Java;
 using Android.Content;
 using Android.Widget;
+using System.Collections.Generic;
 
 namespace Depaumer
 {
@@ -30,10 +31,10 @@ namespace Depaumer
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            ui.scannedWifis = FindViewById<ListView>(Resource.Id.scanned_wifis);
-
             wifiManager = Application.ApplicationContext.GetSystemService(Context.WifiService) as WifiManager;
             program = new Program(this);
+
+            ui.wifiTextView = FindViewById<TextView>(Resource.Id.textViewLocation);
         }
 
         protected override void OnStart()
