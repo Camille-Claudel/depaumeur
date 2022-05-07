@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Numerics;
 using Depaumer.WifiPositioning;
+using Depaumer.Utils;
 
 namespace UnitTests
 {
@@ -41,6 +42,29 @@ namespace UnitTests
             Assert.AreEqual(ws.MacAddress, "a:b:c");
             Assert.AreEqual(ws.RSSI, -100);
             Assert.AreEqual(ws.SSID, "banana_With special @characte&s @!=*#&$+-");
+        }
+
+        [TestMethod]
+        public void TestSquaredDst()
+        {
+            double[] v1 = { 0, 1, 3, 5 };
+            double[] v2 = { 0, 1, 3, 5 };
+            Assert.AreEqual(ArrayExtensions.SquaredEuclidianDistance(v1, v2), 0);
+            Assert.AreEqual(ArrayExtensions.SquaredEuclidianDistance(v2, v1), 0);
+
+            double[] v3 = { 1, 1, 1, 1 };
+            double[] v4 = { 1, 1, 3, 3 };
+            Assert.AreEqual(ArrayExtensions.SquaredEuclidianDistance(v3, v4), 8);
+            Assert.AreEqual(ArrayExtensions.SquaredEuclidianDistance(v4, v3), 8);
+
+            double[] v5 = new double[1000000];
+            double[] v6 = new double[1000000];
+            for (int i = 0; i < v5.Length; i++)
+            {
+                v5[i] = i / 23.5;
+                v6[i] = v5[i] + 1;
+            }
+            Assert.AreEqual(ArrayExtensions.SquaredEuclidianDistance(v5, v6), v5.Length);
         }
     }
 }
