@@ -66,5 +66,32 @@ namespace UnitTests
             }
             Assert.AreEqual(ArrayExtensions.SquaredEuclidianDistance(v5, v6), v5.Length);
         }
+
+        [TestMethod]
+        public void TestLocate()
+        {
+            string[] macAddresses = { "a", "b", "c" };
+            CalibrationPoint[] calPts =
+            {
+                new CalibrationPoint(new Vector2(0, 0), new double[]{-50, -70, -70}),
+                new CalibrationPoint(new Vector2(0, 1), new double[]{-70, -50, -90}),
+                new CalibrationPoint(new Vector2(1, 1), new double[]{-90, -70, -70}),
+                new CalibrationPoint(new Vector2(1, 0), new double[]{-70, -90, -50})
+            };
+            CalibrationSettings cs = new CalibrationSettings(calPts, macAddresses);
+            
+            Locator locator = new Locator(cs);
+            Assert.AreEqual(locator.Settings, cs);
+
+            WifiSignal[] ws =
+            {
+                new WifiSignal("c", -85, "banana"),
+                new WifiSignal("a", -75, "banana"),
+                new WifiSignal("d", -100, "glory to the soviet union"),
+                new WifiSignal("b", -55, "another banana")
+            };
+
+            Assert.AreEqual(locator.Locate(ws), new Vector2(0, 1));
+        }
     }
 }
