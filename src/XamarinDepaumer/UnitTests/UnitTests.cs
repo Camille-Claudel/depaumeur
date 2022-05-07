@@ -33,5 +33,14 @@ namespace UnitTests
             Assert.AreEqual(cs.CalibrationPoints, calPts);
             Assert.AreEqual(cs.WifiPointMacAddresses, macAddresses);
         }
+
+        [TestMethod]
+        public void TestWifiSignal()
+        {
+            WifiSignal ws = new WifiSignal("a:b:c", -100, "banana_With special @characte&s @!=*#&$+-");
+            Assert.AreEqual(ws.MacAddress, "a:b:c");
+            Assert.AreEqual(ws.RSSI, -100);
+            Assert.AreEqual(ws.SSID, "banana_With special @characte&s @!=*#&$+-");
+        }
     }
 }
