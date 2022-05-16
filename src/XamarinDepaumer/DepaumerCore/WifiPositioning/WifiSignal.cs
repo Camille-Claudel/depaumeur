@@ -12,9 +12,11 @@ namespace Depaumer.WifiPositioning
             RSSI = rss;
             SSID = ssid;
         }
+
         public string MacAddress { get; }
         public double RSSI { get; }
         public string SSID { get; }
+
     }
 
 }

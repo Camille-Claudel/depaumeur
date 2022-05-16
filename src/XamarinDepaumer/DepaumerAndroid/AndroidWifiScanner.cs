@@ -13,7 +13,7 @@ namespace Depaumer
             LastWifiScanSignals = new AndroidWifiSignal[0];
         }
 
-        public IWifiSignal[] LastWifiScanSignals { get; }
+        public IWifiSignal[] LastWifiScanSignals { get; private set; }
 
         [Obsolete]
         public bool TryPerformWifiScan(out IWifiSignal[] scannedSignals)
@@ -38,6 +38,7 @@ namespace Depaumer
             }
             finally
             {
+                LastWifiScanSignals = signals;
                 scannedSignals = signals;
             }
 

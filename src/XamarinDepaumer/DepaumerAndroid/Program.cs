@@ -41,12 +41,18 @@ namespace Depaumer
 
         public void Run()
         {
+            wifi.locator.PositionUpdated += OnLocationUpdated;
             wifi.Start(5000);
         }
 
         private void OnLocationUpdated(object sender, PositionUpdateArgs args)
         {
             string text = $"Location : {args.Current}, UpdateTime : {wifi.locator.LastUpdateTime}\nPreviously - Location : {args.Previous}, UpdateTime : {args.LastUpdateTime}";
+
+            text += "\n\nScanned following Wifi signals :";
+
+            foreach (IWifiSignal signal in WifiScan.Scanner.LastWifiScanSignals)
+                text += $"\nScanned signal - {signal.SSID} : {signal.RSSI}";
 
             activity.ui.wifiTextView.Text = text; // When the location is updated, we load a new string representing the new location
         }
