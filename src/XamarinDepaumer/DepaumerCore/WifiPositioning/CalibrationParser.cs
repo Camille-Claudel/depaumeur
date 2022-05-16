@@ -10,7 +10,7 @@ namespace Depaumer.WifiPositioning
     public static class CalibrationParser
     {
 
-        public static ICalibrationSettings LoadSettings(string jsonSettingsString)
+        public static ICalibrationSettings LoadSettingsFromJSON(string jsonSettingsString)
         {
             dynamic jsonData = JObject.Parse(jsonSettingsString); // listen technically i should create a class for this, but flemme
 
@@ -27,6 +27,16 @@ namespace Depaumer.WifiPositioning
 
             return new CalibrationSettings(calibrationPoints, macAddresses);
         }
+
+        public static ICalibrationSettings LoadSettingsFromBinary(byte[] byteSettings)
+        {
+            // Verify right format usage
+
+            // Decode to calibration settings
+
+            return null;
+        }
+
 
     }
 }

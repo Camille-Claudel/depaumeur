@@ -35,7 +35,7 @@ namespace Depaumer
                 settingsJSON = sr.ReadToEnd();
 
             // Parsing the settings and loading them into a new Wifi instance (instance that will scan wifi and search for current location)
-            ICalibrationSettings settings = CalibrationParser.LoadSettings(settingsJSON);
+            ICalibrationSettings settings = CalibrationParser.LoadSettingsFromJSON(settingsJSON);
             wifi = new WifiMain(settings);
         }
 
