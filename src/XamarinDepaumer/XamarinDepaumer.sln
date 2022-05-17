@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepaumerCore", "DepaumerCor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepaumerAndroid", "DepaumerAndroid\DepaumerAndroid.csproj", "{8ECDCFC8-E239-42EF-8031-F885E3472655}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{365376DF-C162-4586-98D0-5993965F94BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{365376DF-C162-4586-98D0-5993965F94BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalibrationParserSA", "CalibrationParserSA\CalibrationParserSA.csproj", "{B9E0E632-4CC5-41F6-B95D-F99BFFCF0070}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{365376DF-C162-4586-98D0-5993965F94BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{365376DF-C162-4586-98D0-5993965F94BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{365376DF-C162-4586-98D0-5993965F94BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E0E632-4CC5-41F6-B95D-F99BFFCF0070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E0E632-4CC5-41F6-B95D-F99BFFCF0070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E0E632-4CC5-41F6-B95D-F99BFFCF0070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E0E632-4CC5-41F6-B95D-F99BFFCF0070}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

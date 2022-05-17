@@ -29,13 +29,15 @@ namespace Depaumer
             WifiScan.Scanner = new AndroidWifiScanner();
 
             // Loading the json settings from Android Assets (App package)
-            string settingsJSON;
+            byte[] settingsBytes;
             AssetManager assets = activity.Assets;
-            using (StreamReader sr = new StreamReader(assets.Open("settings.json")))
-                settingsJSON = sr.ReadToEnd();
-
+            using (BinaryReader s = new BinaryReader(assets.Open("settings.bin")))
+            {
+                settingsBytes = s.ReadBytes((int)s.BaseStream.Length);
+            }
+            
             // Parsing the settings and loading them into a new Wifi instance (instance that will scan wifi and search for current location)
-            ICalibrationSettings settings = CalibrationParser.LoadSettingsFromJSON(settingsJSON);
+            ICalibrationSettings settings = CalibrationParser.LoadSettingsFromBinary(settingsBytes);
             wifi = new WifiMain(settings);
         }
 
