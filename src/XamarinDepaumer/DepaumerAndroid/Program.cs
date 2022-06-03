@@ -12,6 +12,7 @@ using System.Text;
 using Depaumer.WifiEvents;
 using Android.Content.Res;
 using System.IO;
+using Depaumer.Extensions;
 
 namespace Depaumer
 {
@@ -32,9 +33,7 @@ namespace Depaumer
             byte[] settingsBytes;
             AssetManager assets = activity.Assets;
             using (BinaryReader s = new BinaryReader(assets.Open("settings.bin")))
-            {
-                settingsBytes = s.ReadBytes((int)s.BaseStream.Length);
-            }
+                settingsBytes = s.ReadAllBytes();
             
             // Parsing the settings and loading them into a new Wifi instance (instance that will scan wifi and search for current location)
             ICalibrationSettings settings = CalibrationParser.LoadSettingsFromBinary(settingsBytes);

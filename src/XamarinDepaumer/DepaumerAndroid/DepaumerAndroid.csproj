@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="AndroidWifiScanner.cs" />
     <Compile Include="AndroidWifiSignal.cs" />
+    <Compile Include="Extensions\BinaryChunkReader.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\settings.bin" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />

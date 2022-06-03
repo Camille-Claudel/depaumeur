@@ -22,7 +22,6 @@ namespace Depaumer
         public UIManager ui = new UIManager();
 
         internal static WifiManager wifiManager;
-        internal static Context context;
         internal Program program;
 
         protected override void OnCreate(Bundle savedInstanceState)
