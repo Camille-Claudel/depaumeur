@@ -2,6 +2,7 @@
 using System.Text;
 using System.Linq;
 using System.Diagnostics;
+using CalibrationParserSA;
 
 namespace Depaumer.Utils;
 
@@ -18,7 +19,7 @@ public class Program
         watch.Stop();
         Console.WriteLine($"Read json in {watch.ElapsedMilliseconds}ms");
 
-        Console.WriteLine("Simple Convert or Test mode ? (c/t)");
+        Console.WriteLine("Simple Convert, Test mode or verify settings ? (c/t/v)");
 
         ConsoleKey key = Console.ReadKey(true).Key;
         if (key == ConsoleKey.C)
@@ -32,6 +33,24 @@ public class Program
             ICalibrationSettings binarySettings = CalibrationParser.LoadSettingsFromBinary(File.ReadAllBytes("testSettings.bin"));
             watch.Stop();
             Console.WriteLine($"Read binary in {watch.ElapsedMilliseconds}ms");
+        }
+        else if (key == ConsoleKey.V)
+        {
+            File.WriteAllBytes("settings.bin", GetBytes(settings));
+            byte[] bytes;
+            using (BinaryReader reader = new BinaryReader(File.OpenRead("settings.bin")))
+                bytes = reader.ProgressiveReadAllBytes();
+            ICalibrationSettings binaryReadSettings = CalibrationParser.LoadSettingsFromBinary(bytes);
+            
+            for (int i = 0; i < binaryReadSettings.CalibrationPoints.Length; i++)
+            {
+                ICalibrationPoint bp = binaryReadSettings.CalibrationPoints[i];
+                ICalibrationPoint jp = settings.CalibrationPoints[i];
+                if (!IsEqual(bp, jp))
+                {
+                    throw new Exception("PSPSPS");
+                }
+            }
         }
         else
         {
@@ -95,6 +114,19 @@ public class Program
 
         return BinaryContent;
 
+    }
+
+    private static bool IsEqual(ICalibrationPoint A, ICalibrationPoint B)
+    {
+        if (!((A.Position.X == B.Position.X) && (A.Position.Y == B.Position.Y)))
+            return false;
+        for (int i = 0; i < A.Signals.Length; i++)
+        {
+            double sa = A.Signals[i], sb = B.Signals[i];
+            if (!(sa == sb))
+                return false;
+        }
+        return true;
     }
 
     private static byte[] GetBytes(string s)
