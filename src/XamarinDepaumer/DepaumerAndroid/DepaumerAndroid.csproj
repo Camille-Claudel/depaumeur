@@ -51,6 +51,11 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidStoreUncompressedFileExtensions>.bin</AndroidStoreUncompressedFileExtensions>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
