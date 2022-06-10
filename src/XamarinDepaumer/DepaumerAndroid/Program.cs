@@ -13,6 +13,7 @@ using Depaumer.WifiEvents;
 using Android.Content.Res;
 using System.IO;
 using Depaumer.Extensions;
+using Depaumer.Utils;
 
 namespace Depaumer
 {
@@ -53,7 +54,7 @@ namespace Depaumer
             text += "\n\nScanned following Wifi signals :";
 
             foreach (IWifiSignal signal in WifiScan.Scanner.LastWifiScanSignals)
-                text += $"\nScanned signal - {signal.SSID} : {signal.RSSI}";
+                text += $"\nScanned signal - {signal.SSID} ({MacAddressParser.GetStrippedMacAddress(signal.MacAddress)}) : {signal.RSSI}";
 
             activity.ui.wifiTextView.Text = text; // When the location is updated, we load a new string representing the new location
         }

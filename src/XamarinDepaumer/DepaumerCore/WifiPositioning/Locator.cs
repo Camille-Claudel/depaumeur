@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using Depaumer.Utils;
 
 namespace Depaumer.WifiPositioning
 {
@@ -28,7 +29,11 @@ namespace Depaumer.WifiPositioning
 
             foreach (IWifiSignal signal in signals)
             {
-                int index = Array.IndexOf(Settings.WifiPointMacAddresses, signal.MacAddress);
+                if (!MacAddressParser.IsMacAddressValid(signal.MacAddress))
+                    continue;
+                int index = Array.IndexOf(
+                    Settings.WifiPointMacAddresses, 
+                    MacAddressParser.GetStrippedMacAddress(signal.MacAddress));
                 if (index != -1)
                     vector[index] = signal.RSSI;
             }
