@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using Depaumer.Utils;
+using System.Linq;
 
 namespace Depaumer.WifiPositioning
 {
@@ -25,7 +26,11 @@ namespace Depaumer.WifiPositioning
 
         private double[] makeVector(IWifiSignal[] signals)
         {
+            // I don't know why this line wouldn't work on android or iphone systems
+            // double[] vector = Enumerable.Repeat(-100d, Settings.WifiPointMacAddresses.Length).ToArray();
+
             double[] vector = new double[Settings.WifiPointMacAddresses.Length];
+            for (int i = 0; i < vector.Length; i++) vector[i] = -100d;
 
             foreach (IWifiSignal signal in signals)
             {
