@@ -1,7 +1,7 @@
-__pycache__/
 *.pyc
 **/obj
 **/bin
 src/**/.idea/
 src/**/.vs
 src/**/.vscode
+.vscode/*
